@@ -1,0 +1,59 @@
+{
+  "Navigation": {
+    "home": "Hem",
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "whatWeDo": "Vad vi gör"
+  },
+  "Hero": {
+    "title": "KlickIT",
+    "subtitle": "Digital kompetens för alla åldrar",
+    "description": "Vi bygger broar mellan människor och digitala verktyg"
+  },
+  "About": {
+    "title": "Om oss",
+    "description": "KlickIT är en nybildad ideell förening (startad 2025-07-07) av engagerade föräldrar. Vi är oroade över att många barn, unga och äldre inte klarar att navigera den digitala världen.",
+    "mission": "Vi skapar trygga vägar till digital kompetens och arbetar för ett hälsosamt, effektivt och meningsfullt digitalt liv – för alla åldrar."
+  },
+  "WhatWeDo": {
+    "title": "Vad vi gör",
+    "workshops": {
+      "title": "Workshops i digital kompetens",
+      "description": "Praktiska workshops som ger verktyg för att navigera den digitala världen med självförtroende."
+    },
+    "courses": {
+      "title": "Kurser för barn, unga och vuxna",
+      "description": "Anpassade kurser för alla åldrar som bygger digital förståelse steg för steg."
+    },
+    "collaboration": {
+      "title": "Samarbete med skolor & IT-branschen",
+      "description": "Vi skapar broar mellan utbildning och näringsliv för bättre digital kompetens."
+    },
+    "elderly": {
+      "title": "Digitalt stöd till äldre",
+      "description": "Särskilt fokus på att hjälpa äldre att känna sig trygga med digital teknik."
+    },
+    "focus": {
+      "title": "Fokus på hälsa, vardag, framtida yrken",
+      "description": "Vi kopplar digital kompetens till verkliga behov i vardagen och framtiden."
+    },
+    "parents": {
+      "title": "Nära samarbete med engagerade föräldrar",
+      "description": "Vi involverar föräldrar och ungdomar aktivt i föreningens utvecklingsarbete för att skapa relevanta lösningar."
+    }
+  },
+  "Contact": {
+    "title": "Kontakt",
+    "email": "info@klickit.nu",
+    "cta": "Vill du samarbeta, bidra eller bara säga hej? Hör gärna av dig."
+  },
+  "UnderConstruction": {
+    "title": "Under uppbyggnad",
+    "description": "Denna webbplats är under uppbyggnad och lanseras snart. Vi tar gärna emot dina idéer och samarbeten under tiden!"
+  },
+  "LanguageSwitcher": {
+    "sv": "Svenska",
+    "en": "English",
+    "ar": "العربية"
+  }
+}

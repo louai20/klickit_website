@@ -1,0 +1,59 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "about": "About us",
+    "contact": "Contact",
+    "whatWeDo": "What we do"
+  },
+  "Hero": {
+    "title": "KlickIT",
+    "subtitle": "Digital skills for all ages",
+    "description": "We build bridges between people and digital tools"
+  },
+  "About": {
+    "title": "About us",
+    "description": "KlickIT is a newly formed non-profit association (started 2025-07-07) by engaged parents. We are concerned that many children, young people, and elderly struggle to navigate the digital world.",
+    "mission": "We create safe paths to digital competence and work towards a healthy, effective, and meaningful digital life – for all ages."
+  },
+  "WhatWeDo": {
+    "title": "What we do",
+    "workshops": {
+      "title": "Workshops in digital skills",
+      "description": "Practical workshops that provide tools to navigate the digital world with confidence."
+    },
+    "courses": {
+      "title": "Courses for children, young people, and adults",
+      "description": "Tailored courses for all ages that build digital understanding step by step."
+    },
+    "collaboration": {
+      "title": "Collaboration with schools & IT industry",
+      "description": "We create bridges between education and business for better digital competence."
+    },
+    "elderly": {
+      "title": "Digital support for the elderly",
+      "description": "Special focus on helping elderly feel confident with digital technology."
+    },
+    "focus": {
+      "title": "Focus on health, everyday life, future careers",
+      "description": "We connect digital skills to real needs in everyday life and the future."
+    },
+    "parents": {
+      "title": "Close collaboration with engaged parents",
+      "description": "We actively involve parents and young people in the association's development work to create relevant solutions."
+    }
+  },
+  "Contact": {
+    "title": "Contact",
+    "email": "info@klickit.nu",
+    "cta": "Want to collaborate, contribute, or just say hi? Feel free to reach out."
+  },
+  "UnderConstruction": {
+    "title": "Under construction",
+    "description": "This website is under construction and will be launched soon. We welcome your ideas and collaborations in the meantime!"
+  },
+  "LanguageSwitcher": {
+    "sv": "Svenska",
+    "en": "English",
+    "ar": "العربية"
+  }
+}
