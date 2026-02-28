@@ -60,7 +60,7 @@ export default function Footer() {
                 onError={(e) => {
                   e.currentTarget.src = '/next.svg';
                 }}
-                className="h-10 w-auto object-contain drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]"
+                className="h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]"
               />
               <span className="text-xl font-bold">KlickIT</span>
             </Link>

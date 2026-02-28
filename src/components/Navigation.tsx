@@ -84,9 +84,7 @@ export default function Navigation() {
               onError={(e) => {
                 e.currentTarget.src = '/next.svg';
               }}
-              className="h-12 w-auto object-contain drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]"
-            />
-            <span className="text-2xl font-bold text-gray-800 dark:text-white hidden lg:block">KlickIT</span>
+              className="h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -146,10 +144,10 @@ export default function Navigation() {
                   : 'bg-white border-gray-200 hover:bg-gray-50'
                   }`}
               >
-                <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-slate-900 text-white text-[11px] font-bold px-2 leading-none">
-                  {locales.find(l => l.code === locale)?.short}
-                </span>
-                <span className={`text-sm font-medium ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>
+                <svg className={`w-5 h-5 ${darkMode ? 'text-cyan-400' : 'text-indigo-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                <span className={`text-sm font-medium ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>
                   {locales.find(l => l.code === locale)?.label}
                 </span>
                 <svg className={`w-5 h-5 transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">

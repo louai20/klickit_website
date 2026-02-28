@@ -211,7 +211,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'org.dept.support.desc': 'Erbjuder praktisk hjälp och teknisk vägledning.',
     'org.dept.innovation.title': 'Innovationslabb',
     'org.dept.innovation.desc': 'Utforskar nya teknologier och digitala verktyg.',
-  
+
     'course.1.title': 'Digitala grunderna för barn',
     'course.1.desc': 'En introduktion till datorer, internet och säkerhet på nätet för barn 8-12 år.',
     'course.1.duration': '6 veckor',
@@ -255,7 +255,12 @@ const translations: Record<Locale, Record<string, string>> = {
     'event.type.lecture': 'Föreläsning',
     'event.type.discussion': 'Diskussion',
     'event.type.course': 'Kurs',
-},
+
+    'event.past.1.title': 'Kickoff - Vi bygger broar',
+    'event.past.1.desc': 'Föreningens officiella lansering med tal, mingel och framtidsvisioner.',
+    'event.past.2.title': 'Sommarkodläger för ungdomar',
+    'event.past.2.desc': 'Fem dagar fullspäckade med programmering, spelutveckling och digitalt skapande.',
+  },
   en: {
     // Navigation
     'nav.home': 'Home',
@@ -453,7 +458,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'org.dept.support.desc': 'Providing hands-on assistance and technical guidance.',
     'org.dept.innovation.title': 'Innovation Lab',
     'org.dept.innovation.desc': 'Exploring new technologies and digital tools.',
-  
+
     'course.1.title': 'Digital Basics for Children',
     'course.1.desc': 'An introduction to computers, the internet, and online safety for children 8-12 years old.',
     'course.1.duration': '6 weeks',
@@ -497,10 +502,15 @@ const translations: Record<Locale, Record<string, string>> = {
     'event.type.lecture': 'Lecture',
     'event.type.discussion': 'Discussion',
     'event.type.course': 'Course',
-},
+
+    'event.past.1.title': 'Kickoff - Building Bridges',
+    'event.past.1.desc': 'The association\'s official launch with speeches, mingling, and future visions.',
+    'event.past.2.title': 'Summer Coding Camp for Youth',
+    'event.past.2.desc': 'Five days packed with programming, game development, and digital creation.',
+  },
   ar: {
     // Navigation
-        'course.1.title': 'الأساسيات الرقمية للأطفال',
+    'course.1.title': 'الأساسيات الرقمية للأطفال',
     'course.1.desc': 'مقدمة عن أجهزة الكمبيوتر والإنترنت والأمان عبر الإنترنت للأطفال من سن 8 إلى 12 عاماً.',
     'course.1.duration': '6 أسابيع',
     'course.1.age': '8-12 سنة',
@@ -543,7 +553,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'event.type.lecture': 'محاضرة',
     'event.type.discussion': 'مناقشة',
     'event.type.course': 'دورة',
-'nav.home': 'الرئيسية',
+    'nav.home': 'الرئيسية',
     'nav.about': 'من نحن',
     'nav.courses': 'الدورات',
     'nav.events': 'الفعاليات',
@@ -654,6 +664,25 @@ const translations: Record<Locale, Record<string, string>> = {
     'courses.ctaTitle': 'هل أنت مستعد لبدء رحلتك الرقمية؟',
     'courses.ctaText': 'انضم إلى مجتمعنا وتعلم مهارات جديدة معنا',
 
+
+    // Extra
+    'about.learnMore': 'اقرأ المزيد عنا',
+    'whatwedo.description': 'نحن نعمل على جعل العالم الرقمي متاحاً للجميع',
+    'tags.education': 'التعليم الرقمي',
+    'tags.community': 'المجتمع',
+    'tags.inclusion': 'الشمول',
+    'tags.innovation': 'الابتكار',
+    'org.badge': 'منظمتنا',
+    'org.title': 'هيكلية من أجل الأثر',
+    'org.description': 'نحن منظمون لتحقيق مهمتنا في الشمول الرقمي للجميع بشكل فعال.',
+    'org.dept.edu.title': 'التعليم الرقمي',
+    'org.dept.edu.desc': 'تطوير المناهج الدراسية وورش العمل التربوية.',
+    'org.dept.community.title': 'التواصل المجتمعي',
+    'org.dept.community.desc': 'بناء العلاقات مع المجتمعات المحلية والشركاء.',
+    'org.dept.support.title': 'الدعم الفني',
+    'org.dept.support.desc': 'تقديم المساعدة العملية والتوجيه الفني.',
+    'org.dept.innovation.title': 'مختبر الابتكار',
+    'org.dept.innovation.desc': 'استكشاف التقنيات الجديدة والأدوات الرقمية.',
     // Events Page
     'events.title': 'الفعاليات',
     'events.subtitle': 'انضم إلى أنشطتنا وورش عملنا',
@@ -719,6 +748,10 @@ const translations: Record<Locale, Record<string, string>> = {
     'footer.rights': 'جميع الحقوق محفوظة.',
     'footer.privacy': 'سياسة الخصوصية',
     'footer.terms': 'الشروط',
+    'event.past.1.title': 'الافتتاح - نحن نبني الجسور',
+    'event.past.1.desc': 'الإطلاق الرسمي للجمعية مع كلمات وتواصل ورؤى مستقبلية.',
+    'event.past.2.title': 'مخيم البرمجة الصيفي للشباب',
+    'event.past.2.desc': 'خمسة أيام مليئة بالبرمجة وتطوير الألعاب والابتكار الرقمي.',
   }
 };
 

@@ -15,74 +15,74 @@ export default function EventsPage() {
     return () => observer.disconnect();
   }, []);
 
-  const upcomingEvents = [
+    const upcomingEvents = [
     {
-      title: 'Digital säkerhet för föräldrar',
+      title: t('event.1.title'),
       date: '15 feb 2025',
       time: '18:00-20:00',
-      location: 'Biblioteket, Centralt',
-      description: 'Lär dig hur du kan skydda dina barn på nätet och förstå deras digitala värld.',
+      location: t('event.1.location'),
+      description: t('event.1.desc'),
       type: 'workshop',
       icon: '🔒'
     },
     {
-      title: 'Introduktion till AI för nybörjare',
+      title: t('event.2.title'),
       date: '22 feb 2025',
       time: '14:00-16:00',
-      location: 'Kulturhuset, Sal 3',
-      description: 'En grundläggande introduktion till artificiell intelligens och hur den påverkar vårt dagliga liv.',
+      location: t('event.2.location'),
+      description: t('event.2.desc'),
       type: 'lecture',
       icon: '🤖'
     },
     {
-      title: 'Kodning för barn (Årskurs 3-6)',
+      title: t('event.3.title'),
       date: '1 mar 2025',
       time: '10:00-12:00',
-      location: 'TechHub, Main Hall',
-      description: 'Lär dig grunderna i programmering med roliga och enkla övningar.',
+      location: t('event.3.location'),
+      description: t('event.3.desc'),
       type: 'workshop',
       icon: '💻'
     },
     {
-      title: 'Sociala medier - Fördelar och risker',
+      title: t('event.4.title'),
       date: '8 mar 2025',
       time: '17:00-19:00',
-      location: 'Medborgarhuset',
-      description: 'En öppen diskussion om sociala mediers påverkan på ungdomar och hur man använder dem ansvarsfullt.',
+      location: t('event.4.location'),
+      description: t('event.4.desc'),
       type: 'discussion',
       icon: '📱'
     },
     {
-      title: 'Smartphone-kurs för seniorer',
+      title: t('event.5.title'),
       date: '15 mar 2025',
       time: '10:00-12:00',
-      location: 'Seniorcentret',
-      description: 'En nybörjarkurs anpassad för dig som vill lära dig använda din smartphone bättre.',
+      location: t('event.5.location'),
+      description: t('event.5.desc'),
       type: 'course',
       icon: '📱'
     }
   ];
 
-  const pastEvents = [
+    const pastEvents = [
     {
-      title: 'Kickoff - Vi bygger broar',
+      title: t('event.past.1.title'),
       date: '7 jul 2025',
-      description: 'Föreningens officiella lansering med tal, mingel och framtidsvisioner.',
+      description: t('event.past.1.desc'),
       icon: '🚀'
     },
     {
-      title: 'Sommarkodläger för ungdomar',
+      title: t('event.past.2.title'),
       date: '15-19 jul 2025',
-      description: 'Fem dagar fullspäckade med programmering, spelutveckling och digitalt skapande.',
+      description: t('event.past.2.desc'),
       icon: '🎮'
     }
   ];
 
-  const eventTypes = [
-    { type: 'workshop', label: 'Workshop', color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' },
-    { type: 'lecture', label: 'Föreläsning', color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' },
-    { type: 'discussion', label: 'Diskussion', color: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' },
-    { type: 'course', label: 'Kurs', color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' }
+    const eventTypes = [
+    { type: 'workshop', label: t('event.type.workshop'), color: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' },
+    { type: 'lecture', label: t('event.type.lecture'), color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' },
+    { type: 'discussion', label: t('event.type.discussion'), color: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' },
+    { type: 'course', label: t('event.type.course'), color: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' }
   ];
 
   return (

@@ -15,59 +15,59 @@ export default function CoursesPage() {
     return () => observer.disconnect();
   }, []);
 
-  const courses = [
+    const courses = [
     {
       icon: '🧒',
-      title: 'Digitala grunderna för barn',
-      description: 'En introduktion till datorer, internet och säkerhet på nätet för barn 8-12 år.',
-      duration: '6 veckor',
+      title: t('course.1.title'),
+      description: t('course.1.desc'),
+      duration: t('course.1.duration'),
       level: t('courses.beginner'),
-      age: '8-12 år',
+      age: t('course.1.age'),
       gradient: 'from-pink-500 to-rose-400'
     },
     {
       icon: '👦',
-      title: 'Digital kompetens för unga',
-      description: 'Fördjupning i sociala medier, kreativt skapande och framtidens arbetsmarknad.',
-      duration: '8 veckor',
+      title: t('course.2.title'),
+      description: t('course.2.desc'),
+      duration: t('course.2.duration'),
       level: t('courses.intermediate'),
-      age: '13-18 år',
+      age: t('course.2.age'),
       gradient: 'from-purple-500 to-indigo-400'
     },
     {
       icon: '👨‍💼',
-      title: 'Digitala verktyg för vuxna',
-      description: 'Praktiska färdigheter i e-post, videomöten, dokumenthantering och online-tjänster.',
-      duration: '4 veckor',
+      title: t('course.3.title'),
+      description: t('course.3.desc'),
+      duration: t('course.3.duration'),
       level: t('courses.beginner'),
-      age: '18+ år',
+      age: t('course.3.age'),
       gradient: 'from-blue-500 to-cyan-400'
     },
     {
       icon: '👵',
-      title: 'Digital trygghet för seniorer',
-      description: 'En skräddarsydd kurs för att känna sig trygg med smartphones, surfplattor och internet.',
-      duration: '6 veckor',
+      title: t('course.4.title'),
+      description: t('course.4.desc'),
+      duration: t('course.4.duration'),
       level: t('courses.beginner'),
-      age: '65+ år',
+      age: t('course.4.age'),
       gradient: 'from-teal-500 to-emerald-400'
     },
     {
       icon: '🎨',
-      title: 'Kreativt skapande digitalt',
-      description: 'Lär dig bildredigering, videoframställning och musikproduktion med moderna verktyg.',
-      duration: '10 veckor',
+      title: t('course.5.title'),
+      description: t('course.5.desc'),
+      duration: t('course.5.duration'),
       level: t('courses.intermediate'),
-      age: '12+ år',
+      age: t('course.5.age'),
       gradient: 'from-orange-500 to-amber-400'
     },
     {
       icon: '💼',
-      title: 'Digitalt arbete och karriär',
-      description: 'Kompetenser för att navigera arbetsmarknaden och använda digitala verktyg i yrkeslivet.',
-      duration: '8 veckor',
+      title: t('course.6.title'),
+      description: t('course.6.desc'),
+      duration: t('course.6.duration'),
       level: t('courses.advanced'),
-      age: '16+ år',
+      age: t('course.6.age'),
       gradient: 'from-green-500 to-lime-400'
     }
   ];
