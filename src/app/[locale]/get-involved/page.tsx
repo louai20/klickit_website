@@ -1,9 +1,19 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function GetInvolvedPage() {
   const { t } = useLanguage();
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const syncTheme = () => setDarkMode(document.documentElement.classList.contains('dark'));
+    syncTheme();
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   const waysToGetInvolved = [
     {
@@ -79,7 +89,7 @@ export default function GetInvolvedPage() {
     <div className="min-h-screen pt-24 pb-16">
       {/* Header */}
       <section className="pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container">
           <div className="text-center max-w-3xl mx-auto">
             <span className="badge mb-4 animate-fade-in-up">🤗 {t('getInvolved.subtitle')}</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up animation-delay-200">
@@ -94,10 +104,10 @@ export default function GetInvolvedPage() {
 
       {/* Ways to Get Involved */}
       <section className="pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             {waysToGetInvolved.map((way, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="card p-8 hover-scale animate-fade-in-up"
                 style={{ animationDelay: `${idx * 100}ms` }}
@@ -130,9 +140,11 @@ export default function GetInvolvedPage() {
                 </div>
 
                 {/* CTA */}
-                <button className={`w-full py-3 bg-gradient-to-r ${way.gradient} text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300`}>
-                  {t('getInvolved.cta')}
-                </button>
+                <div className="mt-auto pt-6 text-center">
+                  <button className={`px-8 py-3 bg-gradient-to-r ${way.gradient} text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300`}>
+                    {t('getInvolved.cta')}
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -140,8 +152,8 @@ export default function GetInvolvedPage() {
       </section>
 
       {/* Our Values */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800/30">
-        <div className="container mx-auto px-4">
+      <section className={`py-16 ${darkMode ? 'bg-sky-900/40' : 'bg-gray-50'}`}>
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="badge mb-4 animate-fade-in-up">💎 {t('values.subtitle')}</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in-up animation-delay-200">
@@ -154,7 +166,7 @@ export default function GetInvolvedPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {teamValues.map((value, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="card p-6 text-center animate-fade-in-up"
                 style={{ animationDelay: `${idx * 100}ms` }}
@@ -175,7 +187,7 @@ export default function GetInvolvedPage() {
       {/* Join Us CTA */}
       <section className="py-16 animated-bg relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+        <div className="container text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 animate-fade-in-up">
             {t('getInvolved.ctaTitle')}
           </h2>
@@ -186,7 +198,7 @@ export default function GetInvolvedPage() {
             <button className="bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
               {t('getInvolved.join')}
             </button>
-            <a 
+            <a
               href="mailto:info@klickit.nu"
               className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300 flex items-center justify-center gap-2"
             >

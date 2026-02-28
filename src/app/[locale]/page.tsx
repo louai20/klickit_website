@@ -1,10 +1,21 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import Link from 'next/link';
+import Organization from '@/components/Organization';
 
 export default function HomePage() {
   const { t, locale } = useLanguage();
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const syncTheme = () => setDarkMode(document.documentElement.classList.contains('dark'));
+    syncTheme();
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   const stats = [
     { value: '50+', label: t('stats.workshops'), icon: '🎯' },
@@ -61,20 +72,20 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-purple-600/20 to-pink-600/20"></div>
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMC0xMHY2aDZ2LTZoLTZ6bTEwIDEwdjZoNnYtNmgtNnptMC0xMHY2aDZ2LTZoLTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30"></div>
         </div>
-        
+
         {/* Animated Floating Elements */}
         <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full animate-float shadow-lg shadow-yellow-400/20"></div>
         <div className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full animate-float animation-delay-2000 shadow-lg shadow-pink-400/20"></div>
         <div className="absolute bottom-20 left-20 w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full animate-float animation-delay-4000 shadow-lg shadow-blue-400/20"></div>
         <div className="absolute bottom-40 right-10 w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full animate-float shadow-lg shadow-green-400/20"></div>
-        
+
         {/* Rotating Elements */}
         <div className="absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-white/10 rounded-full animate-spin-slow"></div>
         <div className="absolute top-1/2 right-1/4 transform translate-x-1/2 -translate-y-1/2 w-40 h-40 border-2 border-white/10 rounded-full animate-spin-slow animation-delay-1000"></div>
 
-        <div className="container mx-auto px-4 relative z-10 text-center">
+        <div className="container relative z-10 text-center pt-24">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-6 py-3 glass rounded-full text-white text-sm font-medium mb-8 animate-fade-in-up backdrop-blur-sm border border-white/20">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-slate-900 dark:text-slate-100 text-sm font-semibold mb-8 animate-fade-in-up backdrop-blur-md bg-white/75 dark:bg-slate-900/65 border border-white/40 dark:border-white/20 shadow-lg shadow-black/10 dark:shadow-black/40">
             <span className="animate-pulse">✨</span>
             <span>{t('hero.subtitle')}</span>
           </div>
@@ -91,18 +102,18 @@ export default function HomePage() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-600">
-            <Link 
+            <Link
               href={`/${locale}/courses`}
-              className="btn-primary transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="btn btn-primary transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               {t('hero.cta')}
               <svg className="inline-block w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
-            <Link 
+            <Link
               href={`/${locale}/get-involved`}
-              className="btn-secondary transform hover:scale-105 transition-all duration-300"
+              className="btn btn-secondary transform hover:scale-105 transition-all duration-300"
             >
               {t('hero.learnMore')}
             </Link>
@@ -119,10 +130,10 @@ export default function HomePage() {
 
       {/* Stats Section */}
       <section className="section relative -mt-20 z-20">
-        <div className="container mx-auto px-4">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="card card-hover text-center animate-fade-in-up group"
                 style={{ animationDelay: `${idx * 100}ms` }}
@@ -147,10 +158,10 @@ export default function HomePage() {
 
       {/* About Section */}
       <section id="about" className="section">
-        <div className="container mx-auto px-4">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="badge mb-4 animate-fade-in-up">📖 {t('about.subtitle')}</span>
+              <span className="badge mb-4 animate-fade-in-up bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300">📖 {t('about.subtitle')}</span>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
                 <span className="gradient-text">{t('about.title')}</span>
               </h2>
@@ -160,11 +171,11 @@ export default function HomePage() {
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 animate-fade-in-up animation-delay-400">
                 {t('about.mission')}
               </p>
-              <Link 
+              <Link
                 href={`/${locale}/get-involved`}
-                className="btn-primary inline-flex items-center gap-2 animate-fade-in-up animation-delay-600"
+                className="btn btn-primary inline-flex items-center gap-2 animate-fade-in-up animation-delay-600"
               >
-                Läs mer om oss
+                {t('about.learnMore')}
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -173,7 +184,7 @@ export default function HomePage() {
 
             {/* Values Card */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-3xl p-8 text-white animate-fade-in-up animation-delay-200">
+              <div className={`rounded-3xl p-8 text-white animate-fade-in-up animation-delay-200 ${darkMode ? 'bg-sky-900/50' : 'bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500'}`}>
                 <h3 className="text-2xl font-bold mb-6">{t('about.values')}</h3>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -208,28 +219,31 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Organization Section */}
+      <Organization />
+
       {/* What We Do Section */}
-      <section id="whatwedo" className="section bg-gray-50 dark:bg-gray-800/30">
-        <div className="container mx-auto px-4">
+      <section id="whatwedo" className={`section ${darkMode ? 'bg-sky-900/40' : 'bg-gray-50'}`}>
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="badge mb-4 animate-fade-in-up">💪 {t('whatwedo.subtitle')}</span>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in-up animation-delay-200">
               <span className="gradient-text">{t('whatwedo.title')}</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-400">
-              Vi arbetar för att göra den digitala världen tillgänglig för alla
+              {t('whatwedo.description')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {activities.map((activity, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="card card-hover animate-fade-in-up group relative overflow-hidden"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/10 to-transparent rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500"></div>
-                <div className={`w-16 h-16 bg-gradient-to-r ${activity.gradient} rounded-2xl flex items-center justify-center text-3xl mb-6 hover-scale shadow-lg`}>
+                <div className="w-16 h-16 bg-white/5 dark:bg-white/10 rounded-2xl flex items-center justify-center text-3xl mb-4 hover-scale mx-auto shadow-lg">
                   {activity.icon}
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
@@ -239,7 +253,7 @@ export default function HomePage() {
                   {activity.description}
                 </p>
                 <div className="mt-4 flex items-center text-indigo-600 dark:text-indigo-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span>Läs mer</span>
+                  <span>{t('hero.learnMore')}</span>
                   <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -253,21 +267,21 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="section animated-bg relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
+        <div className="container relative z-10 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in-up">
-            redo att börja din digitala resa?
+            {t('courses.ctaTitle')}
           </h2>
           <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-            Gå med i vår gemenskap och lär dig nya färdigheter tillsammans med oss
+            {t('courses.ctaText')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-            <Link 
+            <Link
               href={`/${locale}/courses`}
               className="bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
             >
               {t('hero.cta')}
             </Link>
-            <Link 
+            <Link
               href={`/${locale}/events`}
               className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300"
             >
@@ -279,7 +293,7 @@ export default function HomePage() {
 
       {/* Contact Preview */}
       <section id="contact" className="section">
-        <div className="container mx-auto px-4">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <span className="badge mb-4 animate-fade-in-up">📬 {t('contact.subtitle')}</span>
@@ -289,7 +303,7 @@ export default function HomePage() {
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 animate-fade-in-up animation-delay-400">
                 {t('contact.cta')}
               </p>
-              <a 
+              <a
                 href="mailto:info@klickit.nu"
                 className="inline-flex items-center gap-3 text-indigo-600 dark:text-indigo-400 font-semibold hover:underline animate-fade-in-up animation-delay-600"
               >
@@ -298,13 +312,13 @@ export default function HomePage() {
               </a>
             </div>
             <div className="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-3xl p-8 text-white animate-fade-in-up animation-delay-200">
-              <h3 className="text-2xl font-bold mb-4">Bygg broar till den digitala världen</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('contact.closing')}</h3>
               <p className="text-white/80 mb-6">
-                KlickIT är din partner för digital kompetens. Vi tror på en värld där alla kan delta i det digitala samhället.
+                {t('contact.closingText')}
               </p>
               <div className="flex flex-wrap gap-3">
-                {['Digital utbildning', 'Gemenskap', 'Inkludering', 'Innovation'].map((tag, idx) => (
-                  <span 
+                {[t('tags.education'), t('tags.community'), t('tags.inclusion'), t('tags.innovation')].map((tag, idx) => (
+                  <span
                     key={idx}
                     className="px-4 py-2 bg-white/20 rounded-full text-sm"
                   >

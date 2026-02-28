@@ -1,9 +1,19 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function CoursesPage() {
   const { t } = useLanguage();
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const syncTheme = () => setDarkMode(document.documentElement.classList.contains('dark'));
+    syncTheme();
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   const courses = [
     {
@@ -66,13 +76,13 @@ export default function CoursesPage() {
     <div className="min-h-screen pt-24 pb-16">
       {/* Header */}
       <section className="pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container">
           <div className="text-center max-w-3xl mx-auto">
             <span className="badge mb-4 animate-fade-in-up">📚 {t('courses.subtitle')}</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up animation-delay-200">
               <span className="gradient-text">{t('courses.title')}</span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 animate-fade-in-up animation-delay-400">
+            <p className="text-xl text-gray-600 dark:text-slate-100 animate-fade-in-up animation-delay-400">
               Vi erbjuder kurser anpassade för alla åldrar och nivåer
             </p>
           </div>
@@ -81,10 +91,10 @@ export default function CoursesPage() {
 
       {/* Courses Grid */}
       <section className="pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses.map((course, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="card card-hover animate-fade-in-up"
                 style={{ animationDelay: `${idx * 100}ms` }}
@@ -95,32 +105,31 @@ export default function CoursesPage() {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-3">
+                <h3 className={`text-xl font-bold mb-3 ${darkMode ? 'text-slate-100' : 'text-gray-900'}`}>
                   {course.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <p className={`${darkMode ? 'text-slate-100' : 'text-gray-900'} mb-6`}>
                   {course.description}
                 </p>
 
                 {/* Meta Info */}
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center gap-3 text-sm">
-                    <span className="text-gray-400">⏱️</span>
-                    <span className="text-gray-600 dark:text-gray-400">{course.duration}</span>
+                    <span className={darkMode ? 'text-slate-200' : 'text-gray-700'}>⏱️</span>
+                    <span className={darkMode ? 'text-slate-100' : 'text-gray-900'}>{course.duration}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
-                    <span className="text-gray-400">📅</span>
-                    <span className="text-gray-600 dark:text-gray-400">{course.age}</span>
+                    <span className={darkMode ? 'text-slate-200' : 'text-gray-700'}>📅</span>
+                    <span className={darkMode ? 'text-slate-100' : 'text-gray-900'}>{course.age}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
-                    <span className="text-gray-400">📊</span>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      course.level === 'Nybörjare' || course.level === 'Beginner' 
-                        ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                        : course.level === 'Medel'
+                    <span className="text-gray-400 dark:text-slate-300">📊</span>
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${course.level === 'Nybörjare' || course.level === 'Beginner'
+                      ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                      : course.level === 'Medel'
                         ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
                         : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
-                    }`}>
+                      }`}>
                       {course.level}
                     </span>
                   </div>
@@ -137,8 +146,8 @@ export default function CoursesPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800/30">
-        <div className="container mx-auto px-4">
+      <section className={`py-16 ${darkMode ? 'bg-sky-900/40' : 'bg-gray-50'}`}>
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <span className="gradient-text">{t('courses.howItWorks')}</span>
@@ -153,13 +162,15 @@ export default function CoursesPage() {
               { step: '4', title: t('courses.steps.grow'), icon: '🌟' }
             ].map((item, idx) => (
               <div key={idx} className="text-center animate-fade-in-up" style={{ animationDelay: `${idx * 100}ms` }}>
-                <div className="w-20 h-20 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 hover-scale">
-                  {item.icon}
+                <div className="relative w-20 h-20 mx-auto mb-6">
+                  <div className="w-full h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-3xl hover-scale">
+                    {item.icon}
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-indigo-600 dark:bg-indigo-500 border-2 border-white dark:border-gray-800 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                    {item.step}
+                  </div>
                 </div>
-                <div className="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-sm mx-auto mb-2">
-                  {item.step}
-                </div>
-                <h3 className="font-semibold text-gray-800 dark:text-white">{item.title}</h3>
+                <h3 className="font-semibold text-gray-800 dark:text-white mt-4">{item.title}</h3>
               </div>
             ))}
           </div>
@@ -168,7 +179,7 @@ export default function CoursesPage() {
 
       {/* FAQ */}
       <section className="py-16">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <span className="gradient-text">{t('courses.faq')}</span>
@@ -181,16 +192,16 @@ export default function CoursesPage() {
               { q: t('courses.faq.q2'), a: t('courses.faq.a2') },
               { q: t('courses.faq.q3'), a: t('courses.faq.a3') }
             ].map((faq, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="card p-6 animate-fade-in-up"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
-                <h3 className="font-semibold text-gray-800 dark:text-white mb-2 flex items-center gap-3">
+                <h3 className={`font-semibold mb-2 flex items-center gap-3 ${darkMode ? 'text-slate-100' : 'text-gray-800'}`}>
                   <span className="text-indigo-500">❓</span>
                   {faq.q}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 pl-9">
+                <p className={`pl-9 ${darkMode ? 'text-slate-100' : 'text-gray-600'}`}>
                   {faq.a}
                 </p>
               </div>
@@ -202,7 +213,7 @@ export default function CoursesPage() {
       {/* CTA */}
       <section className="py-16 animated-bg relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+        <div className="container text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 animate-fade-in-up">
             {t('courses.ctaTitle')}
           </h2>

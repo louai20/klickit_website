@@ -42,7 +42,7 @@ export default function ContactPage() {
     <div className="min-h-screen pt-24 pb-16">
       {/* Header */}
       <section className="pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container">
           <div className="text-center max-w-3xl mx-auto">
             <span className="badge mb-4 animate-fade-in-up">📬 {t('contact.subtitle')}</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up animation-delay-200">
@@ -57,7 +57,7 @@ export default function ContactPage() {
 
       {/* Contact Info Cards */}
       <section className="pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container">
           <div className="grid md:grid-cols-3 gap-6 mb-16">
             {[
               {
@@ -79,7 +79,7 @@ export default function ContactPage() {
                 href: '#'
               }
             ].map((item, idx) => (
-              <a 
+              <a
                 key={idx}
                 href={item.href}
                 className="card p-6 text-center hover-scale animate-fade-in-up"
@@ -103,7 +103,7 @@ export default function ContactPage() {
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 <span className="gradient-text">{t('contact.form.title')}</span>
               </h2>
-              
+
               {submitted ? (
                 <div className="card p-8 text-center">
                   <div className="text-5xl mb-4">✅</div>
@@ -186,10 +186,10 @@ export default function ContactPage() {
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 <span className="gradient-text">{t('contact.faq')}</span>
               </h2>
-              
+
               <div className="space-y-4">
                 {faqs.map((faq, idx) => (
-                  <div 
+                  <div
                     key={idx}
                     className="card p-6"
                   >
@@ -219,7 +219,7 @@ export default function ContactPage() {
       {/* Build Bridges Section */}
       <section className="py-16 animated-bg relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+        <div className="container text-center relative z-10">
           <div className="text-5xl mb-6 animate-bounce-slow">🌉</div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 animate-fade-in-up">
             {t('contact.closing')}

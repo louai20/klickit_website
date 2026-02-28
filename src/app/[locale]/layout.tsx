@@ -15,7 +15,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body className="min-h-screen flex flex-col">
-        <LanguageProvider locale={locale as 'en' | 'sv' | 'ar'}>
+        <LanguageProvider locale={locale}>
           <Navigation />
           <main className="flex-grow">
             {children}

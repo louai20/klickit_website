@@ -3,6 +3,9 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 type Locale = 'en' | 'sv' | 'ar';
+const DEFAULT_LOCALE: Locale = 'en';
+const isLocale = (value: string): value is Locale => value === 'en' || value === 'sv' || value === 'ar';
+const normalizeLocale = (value: string): Locale => (isLocale(value) ? value : DEFAULT_LOCALE);
 
 interface LanguageContextType {
   locale: Locale;
@@ -19,20 +22,20 @@ const translations: Record<Locale, Record<string, string>> = {
     'nav.events': 'Evenemang',
     'nav.getInvolved': 'Engagera dig',
     'nav.contact': 'Kontakt',
-    
+
     // Hero
     'hero.title': 'KlickIT',
     'hero.subtitle': 'Digital kompetens för alla åldrar',
     'hero.description': 'Vi bygger broar mellan människor och digitala verktyg',
     'hero.cta': 'Börja lära dig',
     'hero.learnMore': 'Läs mer',
-    
+
     // Stats
     'stats.workshops': 'Workshops',
     'stats.students': 'Elever',
     'stats.volunteers': 'Frivilliga',
     'stats.partners': 'Partners',
-    
+
     // About
     'about.title': 'Om oss',
     'about.subtitle': 'Vår mission och vision',
@@ -46,7 +49,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'about.innovation.desc': 'Vi utforskar nya sätt att lära och växa',
     'about.community': 'Gemenskap',
     'about.community.desc': 'Tillsammans är vi starkare',
-    
+
     // What We Do
     'whatwedo.title': 'Vad vi gör',
     'whatwedo.subtitle': 'Våra initiativ för en digital framtid',
@@ -62,7 +65,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'whatwedo.focus.description': 'Vi kopplar digital kompetens till verkliga behov i vardagen och framtiden.',
     'whatwedo.parents.title': 'Nära samarbete med engagerade föräldrar',
     'whatwedo.parents.description': 'Vi involverar föräldrar och ungdomar aktivt i föreningens utvecklingsarbete.',
-    
+
     // Contact
     'contact.title': 'Kontakt',
     'contact.subtitle': 'Vi hör gärna från dig',
@@ -123,7 +126,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'courses.faq.a3': 'Ja, många av våra kurser erbjuds både fysiskt och online.',
     'courses.ctaTitle': 'Redo att börja din digitala resa?',
     'courses.ctaText': 'Gå med i vår gemenskap och lär dig nya färdigheter tillsammans med oss',
-    
+
     // Events Page
     'events.title': 'Evenemang',
     'events.subtitle': 'Delta i våra aktiviteter och workshops',
@@ -134,7 +137,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'events.volunteer': 'Bli volontär',
     'events.ctaTitle': 'Vill du hålla i en aktivitet?',
     'events.ctaText': 'Vi tar gärna emot dina idéer för framtida evenemang och samarbeten.',
-    
+
     // Get Involved Page
     'getInvolved.title': 'Engagera dig',
     'getInvolved.subtitle': 'Bli en del av rörelsen',
@@ -163,7 +166,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'getInvolved.ctaTitle': 'Redo att göra skillnad?',
     'getInvolved.ctaText': 'Gå med i vår gemenskap och hjälp oss bygga broar till den digitala världen.',
     'getInvolved.join': 'Gå med nu',
-    
+
     // Values
     'values.subtitle': 'Vad vi står för',
     'values.title': 'Våra värderingar',
@@ -189,7 +192,70 @@ const translations: Record<Locale, Record<string, string>> = {
     'footer.rights': 'Alla rättigheter reserverade.',
     'footer.privacy': 'Integritetspolicy',
     'footer.terms': 'Villkor',
-  },
+
+    // Extra
+    'about.learnMore': 'Läs mer om oss',
+    'whatwedo.description': 'Vi arbetar för att göra den digitala världen tillgänglig för alla',
+    'tags.education': 'Digital utbildning',
+    'tags.community': 'Gemenskap',
+    'tags.inclusion': 'Inkludering',
+    'tags.innovation': 'Innovation',
+    'org.badge': 'Vår organisation',
+    'org.title': 'Strukturerad för påverkan',
+    'org.description': 'Vi är organiserade för att effektivt förverkliga vårt uppdrag om digital inkludering för alla.',
+    'org.dept.edu.title': 'Digital Utbildning',
+    'org.dept.edu.desc': 'Utvecklar kursplaner och pedagogiska workshops.',
+    'org.dept.community.title': 'Samhällsengagemang',
+    'org.dept.community.desc': 'Bygger relationer med lokalsamhället och partners.',
+    'org.dept.support.title': 'Teknisk Support',
+    'org.dept.support.desc': 'Erbjuder praktisk hjälp och teknisk vägledning.',
+    'org.dept.innovation.title': 'Innovationslabb',
+    'org.dept.innovation.desc': 'Utforskar nya teknologier och digitala verktyg.',
+  
+    'course.1.title': 'Digitala grunderna för barn',
+    'course.1.desc': 'En introduktion till datorer, internet och säkerhet på nätet för barn 8-12 år.',
+    'course.1.duration': '6 veckor',
+    'course.1.age': '8-12 år',
+    'course.2.title': 'Digital kompetens för unga',
+    'course.2.desc': 'Fördjupning i sociala medier, kreativt skapande och framtidens arbetsmarknad.',
+    'course.2.duration': '8 veckor',
+    'course.2.age': '13-18 år',
+    'course.3.title': 'Digitala verktyg för vuxna',
+    'course.3.desc': 'Praktiska färdigheter i e-post, videomöten, dokumenthantering och online-tjänster.',
+    'course.3.duration': '4 veckor',
+    'course.3.age': '18+ år',
+    'course.4.title': 'Digital trygghet för seniorer',
+    'course.4.desc': 'En skräddarsydd kurs för att känna sig trygg med smartphones, surfplattor och internet.',
+    'course.4.duration': '6 veckor',
+    'course.4.age': '65+ år',
+    'course.5.title': 'Kreativt skapande digitalt',
+    'course.5.desc': 'Lär dig bildredigering, videoframställning och musikproduktion med moderna verktyg.',
+    'course.5.duration': '10 veckor',
+    'course.5.age': '12+ år',
+    'course.6.title': 'Digitalt arbete och karriär',
+    'course.6.desc': 'Kompetenser för att navigera arbetsmarknaden och använda digitala verktyg i yrkeslivet.',
+    'course.6.duration': '8 veckor',
+    'course.6.age': '16+ år',
+    'event.1.title': 'Digital säkerhet för föräldrar',
+    'event.1.desc': 'Lär dig hur du kan skydda dina barn på nätet och förstå deras digitala värld.',
+    'event.1.location': 'Biblioteket, Centralt',
+    'event.2.title': 'Introduktion till AI för nybörjare',
+    'event.2.desc': 'En grundläggande introduktion till artificiell intelligens och hur den påverkar vårt dagliga liv.',
+    'event.2.location': 'Kulturhuset, Sal 3',
+    'event.3.title': 'Kodning för barn (Årskurs 3-6)',
+    'event.3.desc': 'Lär dig grunderna i programmering med roliga och enkla övningar.',
+    'event.3.location': 'TechHub, Main Hall',
+    'event.4.title': 'Sociala medier - Fördelar och risker',
+    'event.4.desc': 'En öppen diskussion om sociala mediers påverkan på ungdomar och hur man använder dem ansvarsfullt.',
+    'event.4.location': 'Medborgarhuset',
+    'event.5.title': 'Smartphone-kurs för seniorer',
+    'event.5.desc': 'En nybörjarkurs anpassad för dig som vill lära dig använda din smartphone bättre.',
+    'event.5.location': 'Seniorcentret',
+    'event.type.workshop': 'Workshop',
+    'event.type.lecture': 'Föreläsning',
+    'event.type.discussion': 'Diskussion',
+    'event.type.course': 'Kurs',
+},
   en: {
     // Navigation
     'nav.home': 'Home',
@@ -198,20 +264,20 @@ const translations: Record<Locale, Record<string, string>> = {
     'nav.events': 'Events',
     'nav.getInvolved': 'Get Involved',
     'nav.contact': 'Contact',
-    
+
     // Hero
     'hero.title': 'KlickIT',
     'hero.subtitle': 'Digital skills for all ages',
     'hero.description': 'We build bridges between people and digital tools',
     'hero.cta': 'Start Learning',
     'hero.learnMore': 'Learn More',
-    
+
     // Stats
     'stats.workshops': 'Workshops',
     'stats.students': 'Students',
     'stats.volunteers': 'Volunteers',
     'stats.partners': 'Partners',
-    
+
     // About
     'about.title': 'About us',
     'about.subtitle': 'Our mission and vision',
@@ -225,7 +291,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'about.innovation.desc': 'We explore new ways to learn and grow',
     'about.community': 'Community',
     'about.community.desc': 'Together we are stronger',
-    
+
     // What We Do
     'whatwedo.title': 'What We Do',
     'whatwedo.subtitle': 'Our initiatives for a digital future',
@@ -241,7 +307,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'whatwedo.focus.description': 'We connect digital skills to real needs in everyday life and the future.',
     'whatwedo.parents.title': 'Close Collaboration with Engaged Parents',
     'whatwedo.parents.description': 'We actively involve parents and young people in the association\'s development work.',
-    
+
     // Contact
     'contact.title': 'Contact',
     'contact.subtitle': "We'd love to hear from you",
@@ -302,7 +368,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'courses.faq.a3': 'Yes, many of our courses are offered both in-person and online.',
     'courses.ctaTitle': 'Ready to start your digital journey?',
     'courses.ctaText': 'Join our community and learn new skills together with us',
-    
+
     // Events Page
     'events.title': 'Events',
     'events.subtitle': 'Join our activities and workshops',
@@ -313,7 +379,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'events.volunteer': 'Become a Volunteer',
     'events.ctaTitle': 'Want to host an activity?',
     'events.ctaText': 'We welcome your ideas for future events and collaborations.',
-    
+
     // Get Involved Page
     'getInvolved.title': 'Get Involved',
     'getInvolved.subtitle': 'Be part of the movement',
@@ -342,7 +408,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'getInvolved.ctaTitle': 'Ready to make a difference?',
     'getInvolved.ctaText': 'Join our community and help us build bridges to the digital world.',
     'getInvolved.join': 'Join Now',
-    
+
     // Values
     'values.subtitle': 'What we stand for',
     'values.title': 'Our Values',
@@ -368,29 +434,135 @@ const translations: Record<Locale, Record<string, string>> = {
     'footer.rights': 'All rights reserved.',
     'footer.privacy': 'Privacy Policy',
     'footer.terms': 'Terms',
-  },
+
+    // Extra
+    'about.learnMore': 'Learn more about us',
+    'whatwedo.description': 'We work to make the digital world accessible to everyone',
+    'tags.education': 'Digital Education',
+    'tags.community': 'Community',
+    'tags.inclusion': 'Inclusion',
+    'tags.innovation': 'Innovation',
+    'org.badge': 'Our organization',
+    'org.title': 'Structured for impact',
+    'org.description': 'We are organized to effectively realize our mission of digital inclusion for all.',
+    'org.dept.edu.title': 'Digital Education',
+    'org.dept.edu.desc': 'Developing curriculum and educational workshops.',
+    'org.dept.community.title': 'Community Outreach',
+    'org.dept.community.desc': 'Building relationships with local communities and partners.',
+    'org.dept.support.title': 'Technical Support',
+    'org.dept.support.desc': 'Providing hands-on assistance and technical guidance.',
+    'org.dept.innovation.title': 'Innovation Lab',
+    'org.dept.innovation.desc': 'Exploring new technologies and digital tools.',
+  
+    'course.1.title': 'Digital Basics for Children',
+    'course.1.desc': 'An introduction to computers, the internet, and online safety for children 8-12 years old.',
+    'course.1.duration': '6 weeks',
+    'course.1.age': '8-12 years',
+    'course.2.title': 'Digital Competence for Youth',
+    'course.2.desc': 'Deepening in social media, creative creation, and the future labor market.',
+    'course.2.duration': '8 weeks',
+    'course.2.age': '13-18 years',
+    'course.3.title': 'Digital Tools for Adults',
+    'course.3.desc': 'Practical skills in email, video meetings, document management, and online services.',
+    'course.3.duration': '4 weeks',
+    'course.3.age': '18+ years',
+    'course.4.title': 'Digital Safety for Seniors',
+    'course.4.desc': 'A tailored course to feel confident with smartphones, tablets, and the internet.',
+    'course.4.duration': '6 weeks',
+    'course.4.age': '65+ years',
+    'course.5.title': 'Creative Digital Creation',
+    'course.5.desc': 'Learn image editing, video production, and music production with modern tools.',
+    'course.5.duration': '10 weeks',
+    'course.5.age': '12+ years',
+    'course.6.title': 'Digital Work and Career',
+    'course.6.desc': 'Competencies to navigate the labor market and use digital tools in professional life.',
+    'course.6.duration': '8 weeks',
+    'course.6.age': '16+ years',
+    'event.1.title': 'Digital Safety for Parents',
+    'event.1.desc': 'Learn how you can protect your children online and understand their digital world.',
+    'event.1.location': 'The Library, Central',
+    'event.2.title': 'Introduction to AI for Beginners',
+    'event.2.desc': 'A basic introduction to artificial intelligence and how it affects our daily lives.',
+    'event.2.location': 'Kulturhuset, Hall 3',
+    'event.3.title': 'Coding for Children (Grades 3-6)',
+    'event.3.desc': 'Learn the basics of programming with fun and simple exercises.',
+    'event.3.location': 'TechHub, Main Hall',
+    'event.4.title': 'Social Media - Benefits and Risks',
+    'event.4.desc': "An open discussion about social media's impact on youth and how to use them responsibly.",
+    'event.4.location': 'Medborgarhuset',
+    'event.5.title': 'Smartphone Course for Seniors',
+    'event.5.desc': 'A beginner course adapted for those who want to learn how to use their smartphone better.',
+    'event.5.location': 'Senior Center',
+    'event.type.workshop': 'Workshop',
+    'event.type.lecture': 'Lecture',
+    'event.type.discussion': 'Discussion',
+    'event.type.course': 'Course',
+},
   ar: {
     // Navigation
-    'nav.home': 'الرئيسية',
+        'course.1.title': 'الأساسيات الرقمية للأطفال',
+    'course.1.desc': 'مقدمة عن أجهزة الكمبيوتر والإنترنت والأمان عبر الإنترنت للأطفال من سن 8 إلى 12 عاماً.',
+    'course.1.duration': '6 أسابيع',
+    'course.1.age': '8-12 سنة',
+    'course.2.title': 'الكفاءة الرقمية للشباب',
+    'course.2.desc': 'تعمق في وسائل التواصل الاجتماعي، والابتكار الإبداعي، وسوق العمل في المستقبل.',
+    'course.2.duration': '8 أسابيع',
+    'course.2.age': '13-18 سنة',
+    'course.3.title': 'الأدوات الرقمية للبالغين',
+    'course.3.desc': 'مهارات عملية في البريد الإلكتروني، واجتماعات الفيديو، وإدارة المستندات، والخدمات عبر الإنترنت.',
+    'course.3.duration': '4 أسابيع',
+    'course.3.age': '18+ سنة',
+    'course.4.title': 'الأمان الرقمي لكبار السن',
+    'course.4.desc': 'دورة مخصصة للشعور بالثقة مع الهواتف الذكية والأجهزة اللوحية والإنترنت.',
+    'course.4.duration': '6 أسابيع',
+    'course.4.age': '65+ سنة',
+    'course.5.title': 'الابتكار الرقمي الإبداعي',
+    'course.5.desc': 'تعلم تحرير الصور، وإنتاج الفيديو، وإنتاج الموسيقى باستخدام الأدوات الحديثة.',
+    'course.5.duration': '10 أسابيع',
+    'course.5.age': '12+ سنة',
+    'course.6.title': 'العمل الرقمي والمسار المهني',
+    'course.6.desc': 'كفاءات للتنقل في سوق العمل واستخدام الأدوات الرقمية في الحياة المهنية.',
+    'course.6.duration': '8 أسابيع',
+    'course.6.age': '16+ سنة',
+    'event.1.title': 'الأمان الرقمي للآباء',
+    'event.1.desc': 'تعلم كيف يمكنك حماية أطفالك عبر الإنترنت وفهم عالمهم الرقمي.',
+    'event.1.location': 'المكتبة، المركز',
+    'event.2.title': 'مقدمة في الذكاء الاصطناعي للمبتدئين',
+    'event.2.desc': 'مقدمة أساسية للذكاء الاصطناعي وكيف يؤثر على حياتنا اليومية.',
+    'event.2.location': 'دار الثقافة، القاعة 3',
+    'event.3.title': 'البرمجة للأطفال (الصفوف 3-6)',
+    'event.3.desc': 'تعلم أساسيات البرمجة من خلال تمارين ممتعة وبسيطة.',
+    'event.3.location': 'تيك هب، القاعة الرئيسية',
+    'event.4.title': 'وسائل التواصل الاجتماعي - الفوائد والمخاطر',
+    'event.4.desc': 'مناقشة مفتوحة حول تأثير وسائل التواصل الاجتماعي على الشباب وكيفية استخدامها بمسؤولية.',
+    'event.4.location': 'بيت المواطن',
+    'event.5.title': 'دورة الهواتف الذكية لكبار السن',
+    'event.5.desc': 'دورة للمبتدئين مهيأة لمن يريدون تعلم كيفية استخدام هواتفهم الذكية بشكل أفضل.',
+    'event.5.location': 'مركز كبار السن',
+    'event.type.workshop': 'ورشة عمل',
+    'event.type.lecture': 'محاضرة',
+    'event.type.discussion': 'مناقشة',
+    'event.type.course': 'دورة',
+'nav.home': 'الرئيسية',
     'nav.about': 'من نحن',
     'nav.courses': 'الدورات',
     'nav.events': 'الفعاليات',
     'nav.getInvolved': 'شارك',
     'nav.contact': 'اتصل بنا',
-    
+
     // Hero
     'hero.title': 'كليك آي تي',
     'hero.subtitle': 'المهارات الرقمية لجميع الأعمار',
     'hero.description': 'نحن نبني جسورًا بين الناس والأدوات الرقمية',
     'hero.cta': 'ابدأ التعلم',
     'hero.learnMore': 'اعرف المزيد',
-    
+
     // Stats
     'stats.workshops': 'ورش العمل',
     'stats.students': 'الطلاب',
     'stats.volunteers': 'المتطوعون',
     'stats.partners': 'الشركاء',
-    
+
     // About
     'about.title': 'من نحن',
     'about.subtitle': 'مهمتنا ورؤيتنا',
@@ -404,7 +576,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'about.innovation.desc': 'نحن نستكشف طرقًا جديدة للتعلم والنمو',
     'about.community': 'المجتمع',
     'about.community.desc': 'معا نحن أقوى',
-    
+
     // What We Do
     'whatwedo.title': 'ما نقدمه',
     'whatwedo.subtitle': 'مبادراتنا لمستقبل رقمي',
@@ -420,7 +592,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'whatwedo.focus.description': 'نحن نربط المهارات الرقمية بالاحتياجات الحقيقية في الحياة اليومية وفي المستقبل.',
     'whatwedo.parents.title': 'تعاون وثيق مع الآباء المهتمين',
     'whatwedo.parents.description': 'نحن نشارك بنشاط الآباء والشباب في عمل تطوير الجمعية.',
-    
+
     // Contact
     'contact.title': 'اتصل بنا',
     'contact.subtitle': 'نود أن نسمع منك',
@@ -481,7 +653,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'courses.faq.a3': 'نعم، تُقدم كثير من دوراتنا وجهًا لوجه وعبر الإنترنت.',
     'courses.ctaTitle': 'هل أنت مستعد لبدء رحلتك الرقمية؟',
     'courses.ctaText': 'انضم إلى مجتمعنا وتعلم مهارات جديدة معنا',
-    
+
     // Events Page
     'events.title': 'الفعاليات',
     'events.subtitle': 'انضم إلى أنشطتنا وورش عملنا',
@@ -492,11 +664,11 @@ const translations: Record<Locale, Record<string, string>> = {
     'events.volunteer': 'كن متطوعًا',
     'events.ctaTitle': 'هل تريد تنظيم نشاط؟',
     'events.ctaText': 'نرحب بأفكارك للفعاليات والتعاونيات المستقبلية.',
-    
+
     // Get Involved Page
     'getInvolved.title': 'شارك',
     'getInvolved.subtitle': 'كن جزءًا من الحركة',
-    'getInvolved.description': 'معا我们可以做出改变，有很多方式可以为KlickIT做出贡献。',
+    'getInvolved.description': 'معًا يمكننا إحداث فرق. هناك العديد من الطرق للمساهمة في أنشطة كليك آي تي.',
     'getInvolved.volunteer.title': 'كن متطوعًا',
     'getInvolved.volunteer.description': 'شارك معرفتك وساعد الآخرين على النمو رقميًا. نحتاج إلى مرشدين وقادة ورش عمل ومديري مشاريع.',
     'getInvolved.volunteer.benefit1': 'ساعات مرنة',
@@ -521,7 +693,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'getInvolved.ctaTitle': 'هل أنت مستعد للفرق؟',
     'getInvolved.ctaText': 'انضم إلى مجتمعنا وساعدنا في بناء جسور إلى العالم الرقمي.',
     'getInvolved.join': 'انضم الآن',
-    
+
     // Values
     'values.subtitle': 'ما نؤمن به',
     'values.title': 'قيمنا',
@@ -552,11 +724,16 @@ const translations: Record<Locale, Record<string, string>> = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children, locale: initialLocale }: { children: ReactNode; locale: Locale }) {
-  const [locale, setLocale] = useState<Locale>(initialLocale);
+export function LanguageProvider({ children, locale: initialLocale }: { children: ReactNode; locale: string }) {
+  const [locale, setLocaleState] = useState<Locale>(normalizeLocale(initialLocale));
+
+  const setLocale = (nextLocale: Locale) => {
+    setLocaleState(normalizeLocale(nextLocale));
+  };
 
   const t = (key: string): string => {
-    return translations[locale][key] || key;
+    const localeTable = translations[locale] ?? translations[DEFAULT_LOCALE];
+    return localeTable[key] || key;
   };
 
   return (

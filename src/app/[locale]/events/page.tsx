@@ -1,9 +1,19 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function EventsPage() {
   const { t } = useLanguage();
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const syncTheme = () => setDarkMode(document.documentElement.classList.contains('dark'));
+    syncTheme();
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   const upcomingEvents = [
     {
@@ -78,8 +88,8 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Header */}
-      <section className="pb-16">
-        <div className="container mx-auto px-4">
+      <section className="pb-16 pt-12">
+        <div className="container">
           <div className="text-center max-w-3xl mx-auto">
             <span className="badge mb-4 animate-fade-in-up">📅 {t('events.subtitle')}</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up animation-delay-200">
@@ -94,10 +104,10 @@ export default function EventsPage() {
 
       {/* Event Types Legend */}
       <section className="pb-8">
-        <div className="container mx-auto px-4">
+        <div className="container">
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up">
             {eventTypes.map((eventType, idx) => (
-              <span 
+              <span
                 key={idx}
                 className={`px-4 py-2 rounded-full text-sm font-medium ${eventType.color}`}
               >
@@ -110,15 +120,15 @@ export default function EventsPage() {
 
       {/* Upcoming Events */}
       <section className="pb-16">
-        <div className="container mx-auto px-4">
+        <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3 animate-fade-in-up">
             <span>🗓️</span>
             {t('events.upcoming')}
           </h2>
 
-          <div className="space-y-6">
+          <div className="space-y-6 max-w-4xl mx-auto">
             {upcomingEvents.map((event, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="card p-6 hover-scale animate-fade-in-up"
                 style={{ animationDelay: `${idx * 100}ms` }}
@@ -134,12 +144,11 @@ export default function EventsPage() {
                   {/* Content */}
                   <div className="flex-grow">
                     <div className="flex flex-wrap items-center gap-3 mb-2">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        event.type === 'workshop' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${event.type === 'workshop' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
                         event.type === 'lecture' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' :
-                        event.type === 'discussion' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
-                        'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400'
-                      }`}>
+                          event.type === 'discussion' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+                            'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400'
+                        }`}>
                         {eventTypes.find(et => et.type === event.type)?.label}
                       </span>
                     </div>
@@ -167,7 +176,7 @@ export default function EventsPage() {
 
                   {/* CTA */}
                   <div className="flex-shrink-0">
-                    <button className="btn-primary whitespace-nowrap">
+                    <button className="btn btn-primary whitespace-nowrap">
                       {t('events.register')}
                     </button>
                   </div>
@@ -179,8 +188,8 @@ export default function EventsPage() {
       </section>
 
       {/* Past Events */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800/30">
-        <div className="container mx-auto px-4">
+      <section className={`py-16 ${darkMode ? 'bg-sky-900/40' : 'bg-gray-50'}`}>
+        <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3 animate-fade-in-up">
             <span>📚</span>
             {t('events.past')}
@@ -188,7 +197,7 @@ export default function EventsPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {pastEvents.map((event, idx) => (
-              <div 
+              <div
                 key={idx}
                 className="card p-6 animate-fade-in-up"
                 style={{ animationDelay: `${idx * 100}ms` }}
@@ -212,7 +221,7 @@ export default function EventsPage() {
       {/* CTA */}
       <section className="py-16 animated-bg relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+        <div className="container text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 animate-fade-in-up">
             {t('events.ctaTitle')}
           </h2>
